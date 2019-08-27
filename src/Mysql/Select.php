@@ -4,14 +4,34 @@ namespace QueryBuilder\Mysql;
 
 class Select
 {
+    private $table;
+    private $fields;
+
     public function table(string $table)
     {
-        return $this;
+        $this->table = $table;
     }
 
+    public function fields(array $fields)
+    {
+        $this->fields = $fields;
+    }
 
     public function getSql()
     {
-        return 'SELECT * FROM pages';
+        $fields = '*';
+
+        if (!empty($this->fields)) {
+            $fields = implode(', ', $this->fields);
+        }
+
+        $sql = sprintf(
+            'SELECT %s FROM %s',
+            $fields,
+            $this->table
+        );
+        echo $sql .PHP_EOL;
+        
+        return $sql;
     }
 }
