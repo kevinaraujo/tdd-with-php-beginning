@@ -6,6 +6,7 @@ class Select
 {
     private $table;
     private $fields;
+    private $filters;
 
     public function table(string $table)
     {
@@ -17,6 +18,11 @@ class Select
         $this->fields = $fields;
     }
 
+    public function filter(Filters $filters)
+    {
+        $this->filters = $filters->getSql();
+    }
+
     public function getSql()
     {
         $fields = '*';
@@ -26,11 +32,14 @@ class Select
         }
 
         $sql = sprintf(
-            'SELECT %s FROM %s',
+            'SELECT %s FROM %s %s',
             $fields,
-            $this->table
+            $this->table,
+            $this->filters
         );
         
+        $sql = trim($sql);
+
         return $sql;
     }
 }

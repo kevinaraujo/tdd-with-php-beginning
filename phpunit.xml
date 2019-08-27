@@ -1,7 +1,10 @@
 <phpunit bootstrap="vendor/autoload.php">
 	<testsuites>
-		<testsuite name="QueryBuilder Lib">
-			<directory>tests</directory>
+		<testsuite name="Unit tests">
+			<directory>tests/unit</directory>
+		</testsuite>
+		<testsuite name="Integration tests">
+			<directory>tests/integration</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
