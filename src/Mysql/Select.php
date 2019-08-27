@@ -30,7 +30,6 @@ class Select
             $fields,
             $this->table
         );
-        echo $sql .PHP_EOL;
         
         return $sql;
     }
